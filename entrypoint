@@ -3,18 +3,17 @@
 echo "nameserver 1.1.1.1" >  /etc/resolv.conf
 echo "nameserver 1.0.0.1" >> /etc/resolv.conf
 
-HUSERNAME=${ENV_USER:-user}
-HOSTUID=${ENV_USER_UID:-9999}
+HOST_USERNAME=${ENV_USER:-user}
+HOST_USERID=${ENV_USER_UID:-9999}
 
-adduser -s /bin/bash -u ${HOSTUID} -D ${HUSERNAME} > /dev/null 2>&1
-echo "${HUSERNAME}    ALL=(ALL) ALL" >> /etc/sudoers
+adduser -s /bin/bash -u ${HOST_USERID} -D ${HOST_USERNAME} > /dev/null 2>&1
+echo "${HOST_USERNAME}:resu" | chpasswd > /dev/null 2>&1
+echo "${HOST_USERNAME}    ALL=(ALL) ALL" >> /etc/sudoers
 
-cp /root/.* /home/${HUSERNAME}/ > /dev/null 2>&1
-cp -R /root/.vim /home/${HUSERNAME}/ > /dev/null 2>&1
-rm -f /home/${HUSERNAME}/.profile
-ln -s /home/${HUSERNAME}/.bashrc /home/${HUSERNAME}/.profile
-chown -R ${HUSERNAME}:${HUSERNAME} /home/${HUSERNAME}
+cp /root/.* /home/${HOST_USERNAME}/ > /dev/null 2>&1
+cp -R /root/.vim /home/${HOST_USERNAME}/ > /dev/null 2>&1
+rm -f /home/${HOST_USERNAME}/.profile
+ln -s /home/${HOST_USERNAME}/.bashrc /home/${HOST_USERNAME}/.profile
+chown -R ${HOST_USERNAME}:${HOST_USERNAME} /home/${HOST_USERNAME}
 
-echo "${HUSERNAME}:resu" | chpasswd > /dev/null 2>&1
-su - ${HUSERNAME}
-cd ~ && date
+su - ${HOST_USERNAME}
