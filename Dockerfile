@@ -6,7 +6,8 @@
 # > docker build -t danarchy/alpine:latest .
 #
 # - run a container named as image
-# > docker run -t -i -h image --name image --rm -e EUID=`id -u` danarchy/alpine:latest /bin/bash
+# > docker run -t -i -h image --name image --rm -e EUID=`id -u` \ 
+#              danarchy/alpine:latest /bin/bash -l
 #
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\////////////////////////////////////////
 
@@ -18,6 +19,9 @@ RUN apk update
 RUN apk upgrade
 RUN apk add --no-cache alpine-sdk bash tmux python3 wget curl git vim htop \
                        youtube-dl
+RUN wget https://yt-dl.org/downloads/latest/youtube-dl \
+        -O /usr/local/bin/youtube-dl && 
+        chmod a+rx /usr/local/bin/youtube-dl
 RUN rm -rf /tmp/* && rm -rf /var/cache/apk/*
 
 COPY dotfiles/ /root/
