@@ -16,7 +16,7 @@ MAINTAINER danarchy.site <dnrk@protonmail.com>
 
 RUN apk update
 RUN apk upgrade
-RUN apk add --no-cache bash tmux python3 wget curl git vim htop
+RUN apk add --no-cache alpine-sdk bash tmux python3 wget curl git vim htop
 RUN rm -rf /tmp/* && rm -rf /var/cache/apk/*
 
 COPY dotfiles/ /root/
