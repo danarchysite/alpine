@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+docker build -t danarchy/alpine:latest .
+
+docker run -t -i -h image --name image --rm -e EUID=`id -u` danarchy/alpine:latest /bin/bash

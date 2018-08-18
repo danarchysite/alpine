@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+EUSR=${ENV_USER:-user}
+EUID=${ENV_USER_UID:-9999}
+
+adduser -s /bin/bash -u ${EUID} -D ${EUSR} > /dev/null 2>&1
+
+cp /root/.* /home/${EUSR}/ > /dev/null 2>&1
+cp -R /root/.vim /home/${EUSR}/ > /dev/null 2>&1
+rm -f /home/${EUSR}/.profile
+ln -s /home/${EUSR}/.bashrc /home/${EUSR}/.profile
+chown -R ${EUSR}:${EUSR} /home/${EUSR}
+
+echo "${EUSR}:resu" | chpasswd > /dev/null 2>&1
+su - ${EUSR}
+cd ~ && date
