@@ -6,7 +6,7 @@
 # > docker build -t danarchy/alpine:latest .
 #
 # - run a container named as image
-# > docker run -t -i -h image --name image --rm -e EUID=`id -u` danarchy/alpine:latest /bin/bash -l
+# > docker run -t -i -h image --name image --rm -e ENV_USER_UID=`id -u` danarchy/alpine:latest /bin/bash -l
 #
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\////////////////////////////////////////
 

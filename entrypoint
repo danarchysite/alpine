@@ -4,7 +4,7 @@ echo "nameserver 1.1.1.1" >  /etc/resolv.conf
 echo "nameserver 1.0.0.1" >> /etc/resolv.conf
 
 HOST_USERNAME=${ENV_USER:-user}
-HOST_USERID=${ENV_USER_UID:-9999}
+HOST_USERID=${ENV_USER_UID:-0}
 
 adduser -s /bin/bash -u ${HOST_USERID} -D ${HOST_USERNAME} > /dev/null 2>&1
 echo "${HOST_USERNAME}:resu" | chpasswd > /dev/null 2>&1
