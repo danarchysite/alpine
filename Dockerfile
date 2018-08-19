@@ -18,6 +18,7 @@ RUN apk update
 RUN apk upgrade
 RUN apk add --no-cache alpine-sdk bash tmux python3 wget curl git vim htop \
                        youtube-dl
+RUN apk add --no-cache ffmpeg
 RUN wget https://yt-dl.org/downloads/latest/youtube-dl \
         -O /usr/local/bin/youtube-dl && \
         chmod a+rx /usr/local/bin/youtube-dl
